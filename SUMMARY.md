@@ -9,4 +9,5 @@
 * [Go语言基础](types/README.md)
     * [变量](types/var.md)
     * [常量](types/const.md)
+    * [基本类型](types/base.md)
 

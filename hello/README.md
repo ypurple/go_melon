@@ -29,8 +29,8 @@ hello world
 ```
 
 ## 详解
-* Go程序是通过package来组织的，`package main`这一行告诉我们当前文件属于哪个包。
-* 每一个可独立运行的Go程序，必定包含一个package main，在这个main包中必定包含一个入口函数main，而这个函数既没有参数，也没有返回值。
-* 为了打印 `Hello world`，我们调用了一个函数`Printf`，这个函数来自于fmt包，所以我们在第三行中导入了系统级别的fmt包：`import "fmt"`
-* 包的概念和Python中的package类似，它们都有一些特别的好处：模块化（能够把你的程序分成多个模块)和可重用性（每个模块都能被其它应用程序反复使用）
+* Go程序是通过package来组织的，`package main`是当前文件属于哪个包。
+* 每一个可独立运行的Go程序，必定包含一个`package main`，`main`包中必定包含一个入口函数`main`，这个函数既没有参数，也没有返回值。
+* 为了打印 `Hello world`，我们调用了一个函数`Printf`，这个函数来自于fmt包，所以需要导入fmt包：`import "fmt"`
+* 包的概念和Python中的package类似，好处：模块化（能够把你的程序分成多个模块)和可重用性（每个模块都能被其它应用程序反复使用）
 
