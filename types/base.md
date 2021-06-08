@@ -29,10 +29,19 @@ Golang 更明确的数字类型命名，支持 Unicode，支持常用数据结�
 整型分为以下两个大类： 
 - 按长度分为：int8、int16、int32、int64
 - 对应的无符号整型：uint8、uint16、uint32、uint64
-- 其中，uint8就是我们熟知的byte型，int16对应C语言中的short型，int64对应C语言中的long型。
+- uint8就是我们熟知的byte型，int16对应C语言中的short型，int64对应C语言中的long型。
+- 类型的变量之间不允许互相赋值或操作，除非显式的强制转换，不然会在编译时引起编译器报错
+
+```go
+var a int8
+var b int32
+
+c := a + b // 产生错误：invalid operation: a + b (mismatched types int8 and int32)
+c := int32(a) + b
+```
 
 #### 浮点型
-Go语言支持两种浮点型数：`float32` 和 `float64`
+Go语言支持两种浮点型数：`float32` 和 `float64` (没有`float`类型)，默认是float64
 - float32 的浮点数的最大范围约为3.4e38，可以使用常量定义：math.MaxFloat32。 
 - float64 的浮点数的最大范围约为 1.8e308，可以使用一个常量定义：math.MaxFloat64。
 
@@ -58,11 +67,21 @@ Go语言中以bool类型进行声明布尔型数据，布尔型数据只有true�
 - Go 语言中不允许将整型强制转换为布尔型.
 - 布尔型无法参与数值运算，也无法与其他类型进行转换。
 
+```go
+var isActive bool  // 全局变量声明
+var enabled, disabled = true, false  // 忽略类型的声明
+func test() {
+    var available bool  // 一般声明
+    valid := false      // 简短声明
+    available = true    // 赋值操作
+}
+```
+
 #### 字符串
 
-Go 语言里的字符串的内部实现使用UTF-8编码。 字符串的值为双引号(")中的内容，可以在Go语言的源码中直接添加非ASCII码字符
+Go 语言里的字符串的内部实现使用UTF-8编码，可以在Go语言的源码中直接添加非ASCII码字符。字符串是用一对双引号（""）或反引号（``）括起来定义
 ```go
-s1 := "hello"
+s1 := `hello`
 s2 := "你好"
 ```
 
@@ -118,7 +137,7 @@ func main() {
 }
 
 ```
-反引号间换行将被作为字符串中的换行，但是所有的转义字符均无效，文本将会原样输出
+括起的字符串为Raw字符串，即字符串在代码中的形式就是打印时的形式，它没有字符转义，换行也将原样输出
 
 > 连接跨行字符串时，"+" 必须在上一行末尾，否则导致编译错误:
 
@@ -217,12 +236,14 @@ func scanString() {
 ```
 
 ##### 修改字符串
-修改字符串，先将其转换成[]rune或[]byte，完成后再转换为string。无论哪种转换，都会重新分配内存，并复制字节数组。
+字符串是不可变的，修改字符串，需先将其转换成[]rune或[]byte，完成后再转换为string。无论哪种转换，都会重新分配内存，并复制字节数组。
 ```go
 package main
 
 func main() {
 	s := "abcd"
+	// s[0] = 'c' // 报错：cannot assign to s[0]
+	
 	bs := []byte(s)
 
 	bs[1] = 'B'
@@ -240,4 +261,13 @@ func main() {
 ```go
 aBcd
 电话
+```
+
+##### 错误类型
+Go内置有一个error类型，专门用来处理错误信息，Go的package里面还专门有一个包errors来处理错误：
+```go
+err := errors.New("emit macho dwarf: elf header corrupted")
+if err != nil {
+    fmt.Print(err)
+}
 ```
