@@ -76,6 +76,7 @@ func foo() {
 	name := "小明"
 	age := 12
 	isOk := true
+	
     fmt.Println(name, age, isOk)
 }
 ```
@@ -87,11 +88,13 @@ func foo() (int, string, bool {
     name := "小明"
     age := 12
     isOk := true
+    
     return name, age, isOk
 }
 func main() {
     x, _, _ := foo()
     _, y, _ := foo()
+    
     fmt.Println("name=", x)
     fmt.Println("age=", y)
 }
@@ -101,6 +104,8 @@ func main() {
 > 注意：
 ```go
 函数外的每个语句都必须以关键字开始（var、const、func等）
+
 := 不能使用在函数外
+
 _ 多用于占位，表示忽略值
 ```

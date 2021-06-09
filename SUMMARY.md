@@ -10,4 +10,10 @@
     * [变量](types/var.md)
     * [常量](types/const.md)
     * [基本类型](types/base.md)
+      * [常用类型](types/common.md)
+      * [字符串String](types/string.md)
+      * [数组Array](array/array.md)
+    * [引用类型](array/base.md)
+      * [切片Slice](array/slice.md)
+      * [容器Map](map/map.md)
 
