@@ -1,4 +1,4 @@
-### slice (切片)
+## slice (切片)
 切片（slice）是对数组一个连续片段的引用（该数组我们称之为相关数组，通常是匿名的），
 所以切片是一个引用类型（类似于 C/C++ 中的数组类型，或者 Python 中的 list 类型）
 
@@ -12,7 +12,7 @@
 
  ![img_1.png](img_1.png)
 
-#### 内部结构
+### 内部结构
 在`$GOROOT/src/pkg/runtime/runtime.h`中可以看到它的定义：
 ```go
 struct    Slice
@@ -51,7 +51,7 @@ func main() {
 3 8
 ```
 
-#### 迭代切片
+### 迭代切片
 
 我们可以使用 for range 循环来迭代它，打印其中的每个元素以及对应的索引。
 ```go
@@ -70,7 +70,7 @@ for i := 0; i < len(slice); i++ {
 }
 ```
 
-#### 自动扩容
+### 自动扩容
 在对`slice`进行`append`等操作时，超过容量时会造成`slice`的自动扩容。其扩容时的大小增长规则是：
 
 - 如果新的大小是当前大小2倍以上，则大小增长为新大小
@@ -112,7 +112,7 @@ func main() {
 > 
 
 
-#### 函数间传递切片
+### 函数间传递切片
 切片是3个字段构成的结构类型，所以在函数间以值的方式传递的时候，占用的内存非常小，成本很低。
 在传递复制切片的时候，其底层数组不会被复制，也不会受影响，复制只是复制的切片本身，不涉及底层数组。
 
@@ -154,9 +154,9 @@ func modify(slice []int) {
 ```
 
 
-#### 切片拷贝和追加
-`copy`: 切片复制
-`append`: 追加
+### 切片拷贝和追加
+- `copy`: 切片复制
+- `append`: 追加
 
 ```go
 package main
@@ -166,7 +166,6 @@ import (
 )
 
 func main() {
-
 	s1 := []int{1, 2, 3, 4, 5}
 	fmt.Printf("slice s1 : %v\n", s1)
 	s2 := make([]int, 10)
@@ -205,22 +204,32 @@ import (
 )
 
 func main() {
-
 	data := [...]int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
 	fmt.Println("array data : ", data)
+	
 	s1 := data[8:]
 	s2 := data[:5]
 	fmt.Printf("slice s1 : %v\n", s1)
 	fmt.Printf("slice s2 : %v\n", s2)
+	
 	copy(s2, s1)
 	fmt.Printf("copied slice s1 : %v\n", s1)
 	fmt.Printf("copied slice s2 : %v\n", s2)
 	fmt.Println("last array data : ", data)
-
 }
 ```
 
-#### 字符号和切片
+输出：
+```
+array data :  [0 1 2 3 4 5 6 7 8 9]
+slice s1 : [8 9]
+slice s2 : [0 1 2 3 4]
+copied slice s1 : [8 9]
+copied slice s2 : [8 9 2 3 4]
+last array data :  [8 9 2 3 4 5 6 7 8 9]
+```
+
+### 字符号和切片
 `string`底层就是一个`byte`的数组，因此，也可以进行切片操作。
 
 ```go

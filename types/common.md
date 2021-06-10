@@ -1,6 +1,6 @@
-### 常用类型
+## 常用类型
 
-#### 整型
+### 整型
 整型分为以下两个大类： 
 - 按长度分为：int8、int16、int32、int64
 - 对应的无符号整型：uint8、uint16、uint32、uint64
@@ -15,7 +15,7 @@ c := a + b // 产生错误：invalid operation: a + b (mismatched types int8 and
 c := int32(a) + b
 ```
 
-#### 浮点型
+### 浮点型
 Go语言支持两种浮点型数：`float32` 和 `float64` (没有`float`类型)，默认是float64
 - float32 的浮点数的最大范围约为3.4e38，可以使用常量定义：math.MaxFloat32。 
 - float64 的浮点数的最大范围约为 1.8e308，可以使用一个常量定义：math.MaxFloat64。
@@ -38,7 +38,7 @@ func main() {
 }
 ```
 
-#### 复数
+### 复数
 
 `complex64`和`complex128`
 复数有实部和虚部，complex64的实部和虚部为32位，complex128的实部和虚部为64位。
@@ -52,7 +52,7 @@ fmt.Printf("The value is: %v", c1)
 ```
 函数 real(c) 和 imag(c) 可以分别获得相应的实数和虚数部分。
 
-#### 布尔值
+### 布尔值
 Go语言中以bool类型进行声明布尔型数据，布尔型数据只有true（真）和false（假）两个值。
 
 注意：
@@ -75,7 +75,7 @@ func test() {
 }
 ```
 
-##### 错误类型
+### 错误类型
 Go内置有一个error类型，专门用来处理错误信息，Go的`package`里面还专门有一个包`errors`来处理错误：
 ```go
 err := errors.New("emit macho dwarf: elf header corrupted")

@@ -15,5 +15,10 @@
       * [数组Array](array/array.md)
     * [引用类型](array/base.md)
       * [切片Slice](array/slice.md)
-      * [容器Map](map/map.md)
+      * [集合Map](map/map.md)
+      * [协程Goroutine](channel/goroutine.md)
+      * [管道Channel](channel/channel.md)
+      * [指针Pointer](pointer/pointer.md)
+    * [结构体](struct/struct.md)
+    * [自定义类型](struct/diy.md)
 
